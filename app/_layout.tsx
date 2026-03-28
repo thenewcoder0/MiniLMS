@@ -1,6 +1,5 @@
 import { Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import '../global.css';
@@ -27,6 +26,21 @@ export default function RootLayout() {
         <Stack>
             <Stack.Screen name="(auth)" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+                name="course-details"
+                options={{
+                    title: 'Course Details',
+                    headerBackTitle: 'Back',
+                    headerTintColor: '#000000ff',
+                }}
+            />
+            <Stack.Screen
+                name="webview"
+                options={{
+                    title: 'Course Content',
+                    headerTintColor: '#3B82F6',
+                }}
+            />
         </Stack>
     );
 }

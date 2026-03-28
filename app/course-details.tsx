@@ -71,20 +71,18 @@ export default function CourseDetailsScreen() {
             <ScrollView>
                 <Image source={{ uri: courseData.thumbnail }} style={styles.thumbnail} />
 
-                <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-                    <Ionicons name="arrow-back" size={24} color="white" />
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.bookmarkButton} onPress={toggleBookmark}>
-                    <Ionicons
-                        name={bookmarked ? 'bookmark' : 'bookmark-outline'}
-                        size={24}
-                        color={bookmarked ? '#3B82F6' : 'white'}
-                    />
-                </TouchableOpacity>
-
                 <View style={styles.content}>
-                    <Text style={styles.title}>{courseData.title}</Text>
+                    <View style={styles.titleRow}>
+                        <Text style={styles.title}>{courseData.title}</Text>
+                        <TouchableOpacity onPress={toggleBookmark}>
+                            <Ionicons
+                                name={bookmarked ? 'bookmark' : 'bookmark-outline'}
+                                size={24}
+                                color={bookmarked ? '#3B82F6' : '#9CA3AF'}
+                            />
+                        </TouchableOpacity>
+                    </View>
+
                     <View style={styles.instructorRow}>
                         <Ionicons name="person-circle-outline" size={20} color="#6B7280" />
                         <Text style={styles.instructor}>{courseData.instructor}</Text>
@@ -143,24 +141,9 @@ export default function CourseDetailsScreen() {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: 'white' },
     thumbnail: { width: '100%', height: 250 },
-    backButton: {
-        position: 'absolute',
-        top: 48,
-        left: 16,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 20,
-        padding: 8,
-    },
-    bookmarkButton: {
-        position: 'absolute',
-        top: 48,
-        right: 16,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 20,
-        padding: 8,
-    },
     content: { padding: 20 },
-    title: { fontSize: 22, fontWeight: 'bold', marginBottom: 12 },
+    titleRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 },
+    title: { fontSize: 22, fontWeight: 'bold', flex: 1, marginRight: 12 },
     instructorRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 16 },
     instructor: { fontSize: 14, color: '#6B7280' },
     statsRow: { flexDirection: 'row', gap: 16, marginBottom: 16 },
