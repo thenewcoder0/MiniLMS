@@ -6,7 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { useFocusEffect } from 'expo-router';
 import { scheduleBookmarkNotification } from '@/utils/notifications';
-
+import OfflineBanner from '@/components/OfflineBanner';
+import { useNetworkStatus } from '@/hooks/useNetworkStatus';
 interface Course {
     id: number;
     title: string;
@@ -79,6 +80,8 @@ export default function CoursesScreen() {
         setFiltered(filteredCourses);
     };
 
+    const isConnected = useNetworkStatus();
+
     const toggleBookmark = async (id: number) => {
         const updated = bookmarks.includes(id)
             ? bookmarks.filter(b => b !== id)
@@ -125,6 +128,7 @@ export default function CoursesScreen() {
 
     return (
         <View style={styles.container}>
+            {!isConnected && <OfflineBanner />}
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>📚 Courses</Text>
                 <TextInput
