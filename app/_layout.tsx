@@ -3,11 +3,20 @@ import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import '../global.css';
+import { requestNotificationPermission, scheduleReminderNotification } from '../utils/notifications';
 
 export default function RootLayout() {
     useEffect(() => {
         checkAuth();
+        setupNotifications();
     }, []);
+
+    const setupNotifications = async () => {
+        const granted = await requestNotificationPermission();
+        if (granted) {
+            await scheduleReminderNotification();
+        }
+    };
 
     const checkAuth = async () => {
         try {
@@ -31,7 +40,7 @@ export default function RootLayout() {
                 options={{
                     title: 'Course Details',
                     headerBackTitle: 'Back',
-                    headerTintColor: '#000000ff',
+                    headerTintColor: '#3B82F6',
                 }}
             />
             <Stack.Screen

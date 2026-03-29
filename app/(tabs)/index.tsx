@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { useFocusEffect } from 'expo-router';
+import { scheduleBookmarkNotification } from '@/utils/notifications';
 
 interface Course {
     id: number;
@@ -84,6 +85,7 @@ export default function CoursesScreen() {
             : [...bookmarks, id];
         setBookmarks(updated);
         await AsyncStorage.setItem('bookmarks', JSON.stringify(updated));
+        await scheduleBookmarkNotification(updated.length);
     };
 
     const renderCourse = ({ item }: { item: Course }) => (
