@@ -22,7 +22,8 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.hari98.MiniLMS"
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +33,12 @@
       "expo-router",
       "expo-secure-store",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4bf4c85e-b6af-436d-b03a-e1064268a946"
+      }
+    }
   }
 }
