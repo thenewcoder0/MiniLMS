@@ -25,7 +25,6 @@ export default function RegisterScreen() {
                 role: 'USER'
             });
 
-            console.log('Login response:', JSON.stringify(response));
 
             if (response.success) {
                 await AsyncStorage.setItem('user', JSON.stringify(response.data.user));

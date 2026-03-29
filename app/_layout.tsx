@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import '../global.css';
 import { requestNotificationPermission, scheduleReminderNotification } from '../utils/notifications';
+import { storage } from '@/utils/api';
 
 export default function RootLayout() {
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function RootLayout() {
 
     const checkAuth = async () => {
         try {
-            const token = await AsyncStorage.getItem('token');
+            const token = await storage.getToken();
             if (token) {
                 router.replace('/(tabs)');
             } else {

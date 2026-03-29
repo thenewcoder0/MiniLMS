@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { storage } from '@/utils/api';
 
 interface User {
     _id: string;
@@ -39,7 +40,9 @@ export default function ProfileScreen() {
                 text: 'Logout',
                 style: 'destructive',
                 onPress: async () => {
-                    await AsyncStorage.multiRemove(['token', 'refreshToken', 'user']);
+                    await storage.deleteToken();
+                    await storage.deleteRefreshToken();
+                    await AsyncStorage.removeItem('user');
                     router.replace('/(auth)/login');
                 },
             },

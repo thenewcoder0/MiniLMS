@@ -64,7 +64,6 @@ export default function CoursesScreen() {
             setFiltered(courseList);
             await AsyncStorage.setItem('allCourses', JSON.stringify(courseList));
         } catch (error) {
-            console.log('Error fetching courses:', error);
         } finally {
             setLoading(false);
             setRefreshing(false);

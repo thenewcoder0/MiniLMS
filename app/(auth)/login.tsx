@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../../utils/api';
+import { storage } from '../../utils/api';
 
 export default function LoginScreen() {
     const [email, setEmail] = useState('');
@@ -19,8 +20,8 @@ export default function LoginScreen() {
             setLoading(true);
             const response = await api.post('/api/v1/users/login', { email, password });
             if (response.success) {
-                await AsyncStorage.setItem('token', response.data.accessToken);
-                await AsyncStorage.setItem('refreshToken', response.data.refreshToken);
+                await storage.setToken(response.data.accessToken);
+                await storage.setRefreshToken(response.data.refreshToken);
                 await AsyncStorage.setItem('user', JSON.stringify(response.data.user));
                 router.replace('/(tabs)');
             } else {
