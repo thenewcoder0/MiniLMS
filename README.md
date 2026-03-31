@@ -76,3 +76,9 @@ No environment variables needed. The app uses the free API at https://api.freeap
 
 3. Build APK
    eas build -p android --profile preview
+
+4. Demo Video Link
+   https://github.com/user-attachments/assets/f839e8d5-7f08-43b4-9e10-57c448568835
+
+5. Download APK
+   https://expo.dev/accounts/hari98/projects/MiniLMS/builds/53067666-8157-4b23-bcec-ac8c05f025b6
